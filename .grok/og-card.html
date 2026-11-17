@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face {
+    font-family: Cinzel;
+    src: url("fonts/Cinzel-Variable.ttf") format("truetype");
+    font-weight: 400 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "IM Fell";
+    src: url("fonts/IMFellEnglish-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #14110d;
+  }
+  .scene { position: absolute; inset: 0; width: 1200px; height: 630px; }
+  .lockup {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .words {
+    position: relative;
+    text-align: center;
+    padding: 8px 36px 4px;
+  }
+  .line {
+    font-family: Cinzel, "Liberation Serif", serif;
+    font-weight: 650;
+    color: #d4b36a;
+    letter-spacing: 0.045em;
+    line-height: 0.88;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.45), 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+  .line1 { font-size: 92px; }
+  .line2 { font-size: 108px; margin-top: 10px; letter-spacing: 0.11em; }
+  .rule {
+    width: 148px;
+    height: 2px;
+    margin: 22px auto 14px;
+    background: #a34b3c;
+    box-shadow: 0 0 0 1px rgba(212, 179, 106, 0.25);
+  }
+  .sub {
+    font-family: "IM Fell", "Liberation Serif", serif;
+    font-size: 30px;
+    color: #f3ead7;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+  }
+</style>
+</head>
+<body>
+  <svg class="scene" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="lamp" cx="22%" cy="18%" r="48%">
+        <stop offset="0%" stop-color="#f3ead7" stop-opacity="0.22"/>
+        <stop offset="28%" stop-color="#d4b36a" stop-opacity="0.16"/>
+        <stop offset="62%" stop-color="#a34b3c" stop-opacity="0.05"/>
+        <stop offset="100%" stop-color="#14110d" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="vig" cx="50%" cy="46%" r="72%">
+        <stop offset="42%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.62"/>
+      </radialGradient>
+      <filter id="grain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.22"/>
+        </feComponentTransfer>
+      </filter>
+      <linearGradient id="parch" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f7f0df"/>
+        <stop offset="100%" stop-color="#e4d3b4"/>
+      </linearGradient>
+      <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f3ead7"/>
+        <stop offset="35%" stop-color="#d4b36a"/>
+        <stop offset="100%" stop-color="#8a6a32"/>
+      </linearGradient>
+      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000" flood-opacity="0.45"/>
+      </filter>
+      <clipPath id="mapclip">
+        <path d="M70 468 C210 442 390 486 600 458 C830 428 1000 470 1136 444 L1152 596 C940 624 700 586 470 612 C250 636 120 600 58 578 Z"/>
+      </clipPath>
+    </defs>
+
+    <rect width="1200" height="630" fill="#14110d"/>
+    <rect width="1200" height="630" fill="url(#lamp)"/>
+    <rect width="1200" height="630" filter="url(#grain)" opacity="0.45"/>
+
+    <!-- folded campaign map -->
+    <g filter="url(#soft)">
+      <path d="M70 468 C210 442 390 486 600 458 C830 428 1000 470 1136 444 L1152 596 C940 624 700 586 470 612 C250 636 120 600 58 578 Z" fill="url(#parch)"/>
+      <path d="M70 468 C180 452 280 470 360 486 L300 608 C180 620 100 598 58 578 Z" fill="#efe4cc" opacity="0.9"/>
+      <path d="M360 478 C390 486 430 470 470 462 L430 604 C390 610 340 606 300 608 Z" fill="#cbb892" opacity="0.55"/>
+    </g>
+    <g clip-path="url(#mapclip)" fill="none" stroke="#14110d" stroke-linecap="round">
+      <path d="M120 520 C200 490 260 540 340 510 C430 476 480 530 560 500 C660 464 720 520 820 492 C920 462 980 510 1080 488" stroke-width="1.6" opacity="0.55"/>
+      <path d="M160 560 C250 540 300 580 390 556 C490 528 540 572 640 548 C760 518 860 566 980 540" stroke-width="1.15" opacity="0.4"/>
+      <path d="M240 500 C280 540 300 570 270 590" stroke-width="1.3" opacity="0.5"/>
+      <path d="M700 470 C740 510 730 550 690 575" stroke-width="1.2" opacity="0.45"/>
+      <path d="M900 500 C960 530 990 560 950 585" stroke-width="1.1" opacity="0.4"/>
+    </g>
+    <g fill="#14110d" opacity="0.55">
+      <rect x="248" y="512" width="5" height="5"/>
+      <rect x="430" y="534" width="5" height="5"/>
+      <rect x="612" y="508" width="5" height="5"/>
+      <rect x="790" y="528" width="4" height="4"/>
+      <rect x="968" y="500" width="5" height="5"/>
+    </g>
+
+    <!-- oil lamp -->
+    <g transform="translate(78 54)">
+      <ellipse cx="54" cy="92" rx="46" ry="10" fill="#000" opacity="0.35"/>
+      <path d="M18 78 C18 64 90 64 90 78 L82 96 C70 104 38 104 26 96 Z" fill="url(#brass)"/>
+      <rect x="46" y="46" width="16" height="24" rx="2" fill="#d4b36a"/>
+      <path d="M40 48 H68 L62 40 H46 Z" fill="#8a6a32"/>
+      <path d="M54 40 C54 22 46 16 50 6 C56 16 64 18 58 34 Z" fill="#f3ead7"/>
+      <path d="M54 36 C54 24 49 18 52 12 C55 20 60 22 56 34 Z" fill="#a34b3c"/>
+      <path d="M8 86 H100" stroke="#d4b36a" stroke-width="2" opacity="0.5"/>
+    </g>
+
+    <!-- brass dividers -->
+    <g transform="translate(1048 46)" fill="none" stroke="url(#brass)" stroke-width="3" stroke-linecap="round">
+      <path d="M36 8 L8 92"/>
+      <path d="M36 8 L78 70"/>
+      <circle cx="36" cy="8" r="5" fill="#d4b36a" stroke="none"/>
+      <circle cx="8" cy="92" r="3.2" fill="#14110d" stroke="#d4b36a" stroke-width="2"/>
+      <circle cx="78" cy="70" r="3.2" fill="#14110d" stroke="#d4b36a" stroke-width="2"/>
+    </g>
+
+    <!-- compass, same mark as the favicon -->
+    <g transform="translate(992 492)">
+      <circle cx="46" cy="46" r="44" fill="#14110d" opacity="0.25"/>
+      <circle cx="46" cy="46" r="40" fill="none" stroke="#d4b36a" stroke-width="2"/>
+      <path d="M46 10 L52 40 L46 46 L40 40 Z" fill="#d4b36a"/>
+      <path d="M82 46 L52 52 L46 46 L52 40 Z" fill="#c9a45c"/>
+      <path d="M46 82 L40 52 L46 46 L52 52 Z" fill="#a34b3c"/>
+      <path d="M10 46 L40 40 L46 46 L40 52 Z" fill="#f3ead7"/>
+      <circle cx="46" cy="46" r="5" fill="#14110d"/>
+      <circle cx="46" cy="46" r="2.2" fill="#d4b36a"/>
+    </g>
+
+    <!-- wax seal -->
+    <g transform="translate(132 518)">
+      <ellipse cx="40" cy="46" rx="34" ry="12" fill="#000" opacity="0.28"/>
+      <circle cx="40" cy="36" r="32" fill="#7c3228"/>
+      <circle cx="40" cy="36" r="28" fill="#a34b3c"/>
+      <circle cx="40" cy="36" r="20" fill="none" stroke="#f3ead7" stroke-width="1.2" opacity="0.55"/>
+      <path d="M40 22 L43.2 32.2 L40 34.5 L36.8 32.2 Z" fill="#f3ead7" opacity="0.85"/>
+      <path d="M54 36 L43.2 39.2 L40 34.5 L43.2 32.2 Z" fill="#f3ead7" opacity="0.65"/>
+      <path d="M40 50 L36.8 39.2 L40 34.5 L43.2 39.2 Z" fill="#f3ead7" opacity="0.45"/>
+      <path d="M26 36 L36.8 32.2 L40 34.5 L36.8 39.2 Z" fill="#f3ead7" opacity="0.75"/>
+    </g>
+
+    <rect width="1200" height="630" fill="url(#vig)"/>
+
+    <!-- brass corner ticks, inset, framing the desk not the type -->
+    <g fill="none" stroke="#d4b36a" stroke-width="1.5" opacity="0.55">
+      <path d="M36 36 H72 M36 36 V72"/>
+      <path d="M1164 36 H1128 M1164 36 V72"/>
+      <path d="M36 594 H72 M36 594 V558"/>
+      <path d="M1164 594 H1128 M1164 594 V558"/>
+    </g>
+  </svg>
+
+  <div class="lockup">
+    <div class="words">
+      <div class="line line1">Calradia</div>
+      <div class="line line2">Bench</div>
+      <div class="rule"></div>
+      <div class="sub">Warband save editor</div>
+    </div>
+  </div>
+</body>
+</html>
